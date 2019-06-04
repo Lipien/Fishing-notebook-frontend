@@ -1,0 +1,27 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+
+<dom-module id="fishing-gui">
+    <template>
+<style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+
+</template>
+
+    <script>
+        class FishingGui extends Polymer.Element {
+            static get is() {
+                return 'fishing-gui';
+            }
+
+            static get properties() {
+                return {
+                    // Declare your properties here.
+                };
+            }
+        }
+        customElements.define(FishingGui.is, FishingGui);
+    </script>
+</dom-module>
