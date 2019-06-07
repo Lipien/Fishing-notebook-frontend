@@ -21,20 +21,16 @@ public class MainView extends VerticalLayout {
     @Autowired
     private SanLeskoWaterLevel sanLeskoWaterLevel;
 
+    Grid <SanLeskoWaterLevel> grid = new Grid <>();
+
     public MainView() {
-
-        Grid <SanLeskoWaterLevel> grid = new Grid <>();
-
         grid.addColumn((SanLeskoWaterLevel::getSanLeskoWaterLevel)).setHeader("San (Lesko)water level in cm");
-
         add(grid);
         setSizeFull();
-        add(new Text("Vaadin with RestTemplate demo"));
-        getSanLeskoWaterLevelVaadin();
+        //getSanLeskoWaterLevelVaadin();
     }
 
-    public SanLeskoWaterLevel getSanLeskoWaterLevelVaadin() {
-        fishingNotebookApiClient.getSanLeskoWaterLevel();
-        return sanLeskoWaterLevel;
+    public void getSanLeskoWaterLevelVaadin() {
+        grid.setItems(fishingNotebookApiClient.getSanLeskoWaterLevel());
     }
 }
