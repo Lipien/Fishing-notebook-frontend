@@ -5,13 +5,13 @@ import com.kodilla.fishingnotebookfrontend.domain.DunajecGolkowiceWaterLevel;
 import com.kodilla.fishingnotebookfrontend.domain.DunajecKroscienkoWaterLevel;
 import com.kodilla.fishingnotebookfrontend.domain.SanLeskoWaterLevel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 
-@Component
+@Service
 public class FishingNotebookApiClient {
 
     @Autowired
@@ -23,7 +23,13 @@ public class FishingNotebookApiClient {
     @Autowired
     SanLeskoWaterLevel sanLeskoWaterLevel;
 
-    public void getSanLeskoWaterLevel() {
+    @Autowired
+    DunajecKroscienkoWaterLevel dunajecKroscienkoWaterLevel;
+
+    @Autowired
+    DunajecGolkowiceWaterLevel dunajecGolkowiceWaterLevel;
+
+    public SanLeskoWaterLevel getSanLeskoWaterLevel() {
 
         URI url = UriComponentsBuilder.fromHttpUrl(fishingNotebookConfiguration.getFishingNotebookApiEndpoint() + "getSanLeskoWater")
                 .build()
@@ -31,11 +37,12 @@ public class FishingNotebookApiClient {
                 .toUri();
 
         Integer levelsResponse = restTemplate.getForObject(url, Integer.TYPE);
-        SanLeskoWaterLevel sanLevel = new SanLeskoWaterLevel();
-        sanLevel.setSanLeskoWaterLevel(levelsResponse);
+        sanLeskoWaterLevel.setSanLeskoWaterLevel(levelsResponse);
+
+        return sanLeskoWaterLevel;
     }
 
-    public void getDunajecKroscienkoWaterLevel() {
+    public DunajecKroscienkoWaterLevel getDunajecKroscienkoWaterLevel() {
 
         URI url = UriComponentsBuilder.fromHttpUrl(fishingNotebookConfiguration.getFishingNotebookApiEndpoint() + "getDunajecKroscienkoWater")
                 .build()
@@ -43,11 +50,12 @@ public class FishingNotebookApiClient {
                 .toUri();
 
         Integer levelsResponse = restTemplate.getForObject(url, Integer.TYPE);
-        DunajecKroscienkoWaterLevel dunajecKroscienkoWaterLevel = new DunajecKroscienkoWaterLevel();
         dunajecKroscienkoWaterLevel.setDunajecKroscienkoWaterLevel(levelsResponse);
+
+        return dunajecKroscienkoWaterLevel;
     }
 
-    public void getDunajecGolkowiceWaterLevel() {
+    public DunajecGolkowiceWaterLevel getDunajecGolkowiceWaterLevel() {
 
         URI url = UriComponentsBuilder.fromHttpUrl(fishingNotebookConfiguration.getFishingNotebookApiEndpoint() + "getDunajecGolkowiceWater")
                 .build()
@@ -55,7 +63,8 @@ public class FishingNotebookApiClient {
                 .toUri();
 
         Integer levelsResponse = restTemplate.getForObject(url, Integer.TYPE);
-        DunajecGolkowiceWaterLevel dunajecGolkowiceWaterLevel = new DunajecGolkowiceWaterLevel();
         dunajecGolkowiceWaterLevel.setDunajecGolkowiceWaterLevel(levelsResponse);
+
+        return dunajecGolkowiceWaterLevel;
     }
 }

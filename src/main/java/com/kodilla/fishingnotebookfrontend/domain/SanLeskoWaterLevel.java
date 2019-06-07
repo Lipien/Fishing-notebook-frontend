@@ -13,5 +13,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class SanLeskoWaterLevel {
 
+//    private String name;
     private Integer sanLeskoWaterLevel;
 }
