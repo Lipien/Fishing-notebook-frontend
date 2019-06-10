@@ -10,4 +10,7 @@ public class FishingNotebookConfiguration {
 
     @Value("${fishingNotebookApiEndpoint}")
     private String fishingNotebookApiEndpoint;
+
+    @Value("${fishingNotebookApiEndpointRegistry}")
+    private String fishingNotebookApiEndpointRegistry;
 }
