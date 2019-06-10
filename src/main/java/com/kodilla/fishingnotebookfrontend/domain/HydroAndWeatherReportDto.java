@@ -6,13 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Component
-public class DunajecKroscienkoWaterLevel {
+public class HydroAndWeatherReportDto {
 
-    private String name;
-    private Integer dunajecKroscienkoWaterLevel;
+    private String waterAndWeatherConditions;
+
 }
