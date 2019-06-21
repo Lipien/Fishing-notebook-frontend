@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,14 +16,14 @@ import java.util.List;
 @Getter
 public class FishingBackendService {
 
-    private List <HydroAndWeatherReportDto> reportList;
-    private FishingBackendService fishingBackendService;
-
     @Autowired
-    FishingNotebookApiClient fishingNotebookApiClient;
+    private FishingNotebookApiClient fishingNotebookApiClient;
 
-    public List <HydroAndWeatherReportDto> getReport() {
-        fishingNotebookApiClient.getBackendConditionsReport();
-        return reportList;
+    public void getImgw() {
+
+        List <HydroAndWeatherReportDto> hydroData = fishingNotebookApiClient.getBackendConditionsReport();
+
+        hydroData.forEach(temp ->
+                System.out.println(temp));
     }
 }

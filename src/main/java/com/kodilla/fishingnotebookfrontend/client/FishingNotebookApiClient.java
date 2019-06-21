@@ -32,7 +32,6 @@ public class FishingNotebookApiClient {
                 .toUri();
 
         HydroAndWeatherReportDto[] backendResponse = restTemplate.getForObject(url, HydroAndWeatherReportDto[].class);
-        //hydroAndWeatherReportDto.setWaterAndWeatherConditions(backendResponse);
 
         if (backendResponse != null) {
             return Arrays.asList(backendResponse);
